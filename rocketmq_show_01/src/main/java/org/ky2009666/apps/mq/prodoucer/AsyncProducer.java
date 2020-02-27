@@ -5,6 +5,7 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
+import org.ky2009666.apps.mq.constant.MqConstant;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,9 +29,9 @@ public class AsyncProducer {
      */
     public static void main(String[] args) throws Exception {
         //1、创建消息生产者，并指定生产者组名
-        DefaultMQProducer producer = new DefaultMQProducer("group_sync_01");
+        DefaultMQProducer producer = new DefaultMQProducer(MqConstant.MQ_PRODUCER_CONSUMER_GROUP_NAME_01);
         //2、指定nameser的地址
-        producer.setNamesrvAddr("192.168.64.7:9876;192.168.64.8:9876");
+        producer.setNamesrvAddr(MqConstant.MQ_NAME_SERV_ADDR);
         producer.setVipChannelEnabled(false);
         //3、启动producer
         producer.start();
