@@ -34,7 +34,11 @@ public class ConsumerOrderMsg {
         consumer.registerMessageListener(new MessageListenerOrderly() {
             @Override
             public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgs, ConsumeOrderlyContext context) {
-                log.info("当前线程名称:{},msgs:{}",Thread.currentThread().getName(), msgs);
+                for (MessageExt msg : msgs
+                ) {
+                    log.info("当前线程名称:{},msgs:{}", Thread.currentThread().getName(), new String(msg.getBody()));
+                }
+
                 return ConsumeOrderlyStatus.SUCCESS;
             }
         });
